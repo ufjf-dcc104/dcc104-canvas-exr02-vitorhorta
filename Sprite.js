@@ -3,13 +3,13 @@ function Sprite(){
     this.x = 0;
     this.y = 0;
     this.vx = 0;
-    this.vy = 0;
+    this.vy = 10;
     this.ax = 0;
     this.ay = 0;
     this.am = 0;
     this.width = 32;
     this.height = 32;
-    this.angle = 0;
+    this.angle = 270;
     this.vang = 0;
     this.color = "blue";
     this.cooldown = 0;
@@ -52,7 +52,7 @@ Sprite.prototype.mover = function (dt) {
     this.vy = this.vy + (this.ay+this.g)*dt;
     this.x = this.x + this.vx*dt;
     this.y = this.y + this.vy*dt;
-    this.angle = this.angle + this.vang*dt;
+    //this.angle = this.angle + this.vang*dt;
     if(this.cooldown>0) {
         this.cooldown -= dt;
     } else {
@@ -96,6 +96,5 @@ Sprite.prototype.perseguirAng = function (alvo, dt) {
     var dA = 180*Math.acos(dX/dist)/Math.PI;
     this.vang = 100*(dA - this.angle)*dt;
 };
-
 
 

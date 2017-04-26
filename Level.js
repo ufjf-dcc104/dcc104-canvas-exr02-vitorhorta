@@ -11,8 +11,8 @@ Level.prototype.init = function () {
         inimigo.y = 10;
         inimigo.width = 32;
         inimigo.height = 32;
-        inimigo.vang = 300*i;
-        inimigo.am = 00;
+        //inimigo.vang = 300*i;
+        inimigo.am = 0;
         inimigo.imgkey = "enemy";
         this.sprites.push(inimigo);
     }

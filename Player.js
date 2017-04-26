@@ -1,12 +1,15 @@
 function Player(){
-    this.hp = 0;
+    this.hp = 100;
     this.sprite = new Sprite();
     this.vidas = 3;
     this.pontos = 0;
     this.x = 40;
-    this.y = 75;
+    this.y = 350;
     this.sprite.x = this.x;
     this.sprite.y = this.y;
+    this.sprite.ay = 0.0;
+    this.sprite.vy = 0.0;
+    this.shots = [];
 }
 
 
@@ -22,3 +25,17 @@ Player.prototype.perseguir = function (alvo, dt) {this.sprite.perseguir(alvo, dt
 Player.prototype.perseguirAng = function (alvo, dt){this.sprite.perseguirAng(alvo, dt)};
 
 
+Player.prototype.fire = function (alvo, audiolib, key, vol){
+    if(alvo.cooldown>0) return;
+    var tiro = new Sprite();
+    tiro.x = alvo.x;
+    tiro.y = alvo.y;
+    tiro.angle = alvo.angle;
+    tiro.am = 100;
+    tiro.width = 8;
+    tiro.height = 16;
+    tiro.imgkey = "shot";
+    this.shots.push(tiro);
+    alvo.cooldown = 1;
+    if(audiolib && key) audiolib.play(key,vol);
+}
