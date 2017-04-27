@@ -8,6 +8,7 @@
     <script src="Sprite.js" charset="utf-8"></script>
     <script src="Level.js" charset="utf-8"></script>
     <script src="Player.js" charset="utf-8"></script>
+    <script src="Enemy.js" charset="utf-8"></script>
 </head>
 <body>
 <h1>DCC104 - Exemplo 02</h1>
@@ -21,10 +22,11 @@
     var anterior = new Date();
     var dt = 0;
     var player = new Player();
-
+    player.imageLib = il;
     var level = new Level();
     level.imageLib = il;
     level.init();
+    level.player = player;
     desenha();
 
     function initImageLoader(){
@@ -61,6 +63,7 @@
         ctx.fillText("Pontos: " + player.pontos, 400, 30);
         level.perseguir(player.sprite,dt);
         player.mover(dt);
+
         level.moverAng(dt);
         level.colidiuCom(player.sprite,
             function(inimigo, alvo){
@@ -74,43 +77,7 @@
     }
 
 
-    addEventListener("keydown", function(e){
-        switch (e.keyCode) {
-            case 32:
-                level.fire(player.sprite, al, "shot", 0.5);
-                break;
-            case 37:
-                player.sprite.ax = -100;
-                break;
-            case 38:
-                player.sprite.ay = -100;
-                break;
-            case 39:
-                player.sprite.ax = +100;
-                break;
-            case 40:
-                player.sprite.ay = +100;
-                break;
-            default:
-        }
-    });
-    addEventListener("keyup", function(e){
-        switch (e.keyCode) {
-            case 37:
-                player.sprite.ax = 0;
-                break;
-            case 38:
-                player.sprite.ay = 0;
-                break;
-            case 39:
-                player.sprite.ax = 0;
-                break;
-            case 40:
-                player.sprite.ay = 0;
-                break;
-            default:
-        }
-    });
+
 </script>
 </body>
 

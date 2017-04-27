@@ -3,7 +3,7 @@ function Sprite(){
     this.x = 0;
     this.y = 0;
     this.vx = 0;
-    this.vy = 10;
+    this.vy = 0;
     this.ax = 0;
     this.ay = 0;
     this.am = 0;
@@ -53,11 +53,7 @@ Sprite.prototype.mover = function (dt) {
     this.x = this.x + this.vx*dt;
     this.y = this.y + this.vy*dt;
     //this.angle = this.angle + this.vang*dt;
-    if(this.cooldown>0) {
-        this.cooldown -= dt;
-    } else {
-        this.cooldown = 0;
-    }
+
 };
 
 Sprite.prototype.moverAng = function (dt) {
@@ -68,11 +64,6 @@ Sprite.prototype.moverAng = function (dt) {
     this.vy = this.vy + (this.ay+this.g)*dt;
     this.x = this.x + this.vx*dt;
     this.y = this.y + this.vy*dt;
-    if(this.cooldown>0) {
-        this.cooldown -= dt;
-    } else {
-        this.cooldown = 0;
-    }
 };
 
 
