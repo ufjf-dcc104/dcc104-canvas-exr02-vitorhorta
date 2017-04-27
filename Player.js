@@ -59,7 +59,7 @@ Player.prototype.perseguirAng = function (alvo, dt){this.sprite.perseguirAng(alv
 Player.prototype.removeShot = function (shot){
     x = this.shots.indexOf(shot);
     this.colisionObservable.remove(shot);
-    this.shots.splice(x, 1);
+    this.shots = this.shots.splice(x, 1);
 };
 
 Player.prototype.fire = function (audiolib, key, vol){

@@ -8,7 +8,7 @@ function Enemy(){
     this.sprite.x = this.x;
     this.sprite.y = this.y;
     this.sprite.ay = 0.0;
-    this.sprite.vy = 40.0;
+    this.sprite.vy = 60.0;
     this.shots = [];
     this.colisionResolver = null;
 }
