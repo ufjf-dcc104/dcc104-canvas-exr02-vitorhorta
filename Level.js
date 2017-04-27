@@ -3,9 +3,16 @@ function Level() {
     this.shots = [];
     this.inimigos = 3;
     this.player = null;
+    this.respawnCooldown = 0;
+    this.maxCooldown = 2;
 }
 
 Level.prototype.init = function () {
+    this.respawn();
+};
+
+Level.prototype.respawn = function (dt) {
+    if(this.respawnCooldown>0) return;
     for (var i = 0; i < this.inimigos; i++) {
         var inimigo = new Enemy();
         inimigo.sprite.x = 120 + 20 * i;
@@ -15,6 +22,7 @@ Level.prototype.init = function () {
         //inimigo.vang = 300*i;
         inimigo.sprite.am = 0;
         inimigo.imgkey = "enemy";
+        this.respawnCooldown = this.maxCooldown;
         this.enemies.push(inimigo);
     }
 };
@@ -26,6 +34,11 @@ Level.prototype.mover = function (dt) {
 };
 
 Level.prototype.moverAng = function (dt) {
+    if(this.respawnCooldown>0) {
+        this.respawnCooldown -= dt;
+    } else {
+        this.respawnCooldown = 0;
+    }
     for (var i = 0; i < this.enemies.length; i++) {
         this.enemies[i].moverAng(dt);
     }

@@ -2,11 +2,11 @@ function Enemy(){
     this.hp = 1;
     this.sprite = new Sprite();
     this.x = 0;
-    this.y = 10;
+    this.y = 30;
     this.sprite.x = this.x;
     this.sprite.y = this.y;
     this.sprite.ay = 0.0;
-    this.sprite.vy = 10.0;
+    this.sprite.vy = 30.0;
     this.shots = [];
 }
 

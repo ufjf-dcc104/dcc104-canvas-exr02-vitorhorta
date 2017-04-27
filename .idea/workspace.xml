@@ -28,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Enemy.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Enemy.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enemy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+            <state relative-caret-position="144">
+              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -41,8 +41,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+            <state relative-caret-position="422">
+              <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -51,8 +51,8 @@
       <file leaf-file-name="Level.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Level.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="719">
-              <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+            <state relative-caret-position="432">
+              <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -78,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="557">
-              <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+              <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -116,11 +116,11 @@
         <option value="$PROJECT_DIR$/Lvel.js" />
         <option value="$PROJECT_DIR$/ImageLoader.js" />
         <option value="$PROJECT_DIR$/AudioLoader.js" />
-        <option value="$PROJECT_DIR$/Enemy.js" />
         <option value="$PROJECT_DIR$/Sprite.js" />
+        <option value="$PROJECT_DIR$/Player.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Level.js" />
-        <option value="$PROJECT_DIR$/Player.js" />
+        <option value="$PROJECT_DIR$/Enemy.js" />
       </list>
     </option>
   </component>
@@ -247,12 +247,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1493243987839</updated>
-      <workItem from="1493243989432" duration="4370000" />
+      <workItem from="1493243989432" duration="4943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4370000" />
+    <option name="totallyTimeSpent" value="4943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -303,10 +303,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enemy.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+        <state relative-caret-position="422">
+          <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Level.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="48" lean-forward="false" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -319,26 +335,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/Enemy.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Level.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
+        <state relative-caret-position="144">
+          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
