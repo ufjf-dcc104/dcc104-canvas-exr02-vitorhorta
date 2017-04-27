@@ -68,13 +68,9 @@ Level.prototype.colidiuCom = function (alvo, resolveColisao) {
     }
 };
 
-Level.prototype.removeEnemy = function (enemy){
-    x = this.enemies.indexOf(enemy);
-    this.colisionObservable.remove(enemy);
-    this.enemies.splice(x, 1);
-};
 
 Level.prototype.resolveColision = function (inimigo,alvo){
+    if (alvo instanceof Enemy) return;
     var key = "boom";
     x = this.enemies.indexOf(inimigo);
     this.enemies.splice(x, 1);
