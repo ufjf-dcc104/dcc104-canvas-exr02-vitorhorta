@@ -8,13 +8,16 @@
     <script src="Sprite.js" charset="utf-8"></script>
     <script src="Level.js" charset="utf-8"></script>
     <script src="Player.js" charset="utf-8"></script>
+    <script src="Shot.js" charset="utf-8"></script>
     <script src="Enemy.js" charset="utf-8"></script>
+    <script src="ColisionObservable.js" charset="utf-8"></script>
 </head>
 <body>
 <h1>DCC104 - Exemplo 02</h1>
 <canvas></canvas>
 <script>
-    var eCanvas = initCanvas()
+    var eCanvas = initCanvas();
+    var colisionObservable = new ColisionObservable();
     var ctx = eCanvas.getContext("2d");
     var il =initImageLoader();
     var al = initAudioLoader();
@@ -23,8 +26,11 @@
     var dt = 0;
     var player = new Player();
     player.imageLib = il;
+    player.colisionObservable = colisionObservable;
+    colisionObservable.add(player);
     var level = new Level();
     level.imageLib = il;
+    level.colisionObservable = colisionObservable;
     level.init();
     level.player = player;
     desenha();
@@ -64,16 +70,13 @@
         level.respawn(dt);
         level.perseguir(player.sprite,dt);
         player.mover(dt);
-
         level.moverAng(dt);
-        level.colidiuCom(player.sprite,
-            function(inimigo, alvo){
-                inimigo.color = "red";
-            }
-        );
+
+        colisionObservable.checkColisions();
+
         player.desenharImg(ctx, il.images["pc"]);
         level.desenharImg(ctx);
-        level.colidiuComTiros(al,"boom");
+
         anterior = atual;
     }
 

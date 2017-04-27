@@ -11,16 +11,16 @@ function Player(){
     this.sprite.vy = 0.0;
     this.shots = [];
     this.cooldown = 0;
-
+    this.colisionObservable = null;
 }
 
 
 Player.prototype.desenhar = function(ctx){this.sprite.desenhar(ctx)};
 
 Player.prototype.desenharImg = function(ctx, img){
-    this.sprite.desenharImg(ctx, img)
+    this.sprite.desenharImg(ctx, img);
     for (var i = 0; i < this.shots.length; i++) {
-        this.shots[i].desenharImg(ctx, this.imageLib.images[this.shots[i].imgkey]);
+        this.shots[i].desenharImg(ctx, this.imageLib.images[this.shots[i].sprite.imgkey]);
     }
 };
 
@@ -37,10 +37,10 @@ Player.prototype.moverTiros = function(dt){
     for (var i = this.shots.length - 1; i >= 0; i--) {
         this.shots[i].moverAng(dt);
         if (
-            this.shots[i].x > 3000 ||
-            this.shots[i].x < -3000 ||
-            this.shots[i].y > 3000 ||
-            this.shots[i].y < -3000
+            this.shots[i].sprite.x > 3000 ||
+            this.shots[i].sprite.x < -3000 ||
+            this.shots[i].sprite.y > 3000 ||
+            this.shots[i].sprite.y < -3000
         ) {
             this.shots.splice(i, 1);
         }
@@ -49,31 +49,50 @@ Player.prototype.moverTiros = function(dt){
 
 Player.prototype.moverAng = function(dt){this.sprite.moverAng(dt)};
 
-Player.prototype.colidiuCom = function(alvo){this.sprite.colidiuCom(alvo)};
+Player.prototype.colidiuCom = function(alvo){
+    this.sprite.colidiuCom(alvo);
+};
 
 Player.prototype.perseguir = function (alvo, dt) {this.sprite.perseguir(alvo, dt)};
 Player.prototype.perseguirAng = function (alvo, dt){this.sprite.perseguirAng(alvo, dt)};
 
+Player.prototype.removeShot = function (shot){
+    x = this.shots.indexOf(shot);
+    this.colisionObservable.remove(shot);
+    this.shots.splice(x, 1);
+};
 
 Player.prototype.fire = function (audiolib, key, vol){
     if(player.cooldown>0) return;
-    var tiro = new Sprite();
-    tiro.x = player.sprite.x;
-    tiro.y = player.sprite.y;
-    tiro.angle = player.sprite.angle;
-    tiro.am = 100;
-    tiro.width = 8;
-    tiro.height = 16;
-    tiro.imgkey = "shot";
+    var tiro = new Shot();
+    tiro.sprite.x = player.sprite.x;
+    tiro.sprite.y = player.sprite.y;
+    tiro.sprite.angle = player.sprite.angle;
+    tiro.sprite.am = 100;
+    tiro.sprite.width = 8;
+    tiro.sprite.height = 16;
+    tiro.sprite.imgkey = "shot";
     this.shots.push(tiro);
+    this.colisionObservable.add(tiro);
+    tiro.player = this;
     player.cooldown = 1;
     if(audiolib && key) audiolib.play(key,vol);
 }
 
-Player.prototype.acertouTiro = function () {
-    this.pontos += 100;
+Player.prototype.receberPontos = function (pontos) {
+    this.pontos += pontos;
 }
 
+Player.prototype.receberDano = function (dano) {
+    this.hp -= dano;
+}
+
+
+Player.prototype.resolveColision = function (alvo){
+    if (alvo instanceof Shot) return;
+    this.receberDano(alvo.dano);
+    this.receberPontos(alvo.pontos);
+};
 
 addEventListener("keydown", function(e){
     switch (e.keyCode) {

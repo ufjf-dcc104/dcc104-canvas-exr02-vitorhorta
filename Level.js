@@ -1,7 +1,8 @@
 function Level() {
+    this.colisionObservable = null;
     this.enemies = [];
     this.shots = [];
-    this.inimigos = 3;
+    this.inimigosRespawn = 1;
     this.player = null;
     this.respawnCooldown = 0;
     this.maxCooldown = 2;
@@ -12,18 +13,22 @@ Level.prototype.init = function () {
 };
 
 Level.prototype.respawn = function (dt) {
-    if(this.respawnCooldown>0) return;
-    for (var i = 0; i < this.inimigos; i++) {
+    if (this.respawnCooldown > 0) return;
+    for (var i = 0; i < this.inimigosRespawn; i++) {
         var inimigo = new Enemy();
-        inimigo.sprite.x = 120 + 20 * i;
+        var xPosition = Math.floor((Math.random() * 10) + 1);
+        inimigo.sprite.x = 20 * xPosition;
         inimigo.sprite.y = 10;
         inimigo.sprite.width = 32;
         inimigo.sprite.height = 32;
+        inimigo.pontos = 100;
+        inimigo.colisionResolver = this;
         //inimigo.vang = 300*i;
         inimigo.sprite.am = 0;
         inimigo.imgkey = "enemy";
         this.respawnCooldown = this.maxCooldown;
         this.enemies.push(inimigo);
+        this.colisionObservable.add(inimigo);
     }
 };
 
@@ -34,7 +39,7 @@ Level.prototype.mover = function (dt) {
 };
 
 Level.prototype.moverAng = function (dt) {
-    if(this.respawnCooldown>0) {
+    if (this.respawnCooldown > 0) {
         this.respawnCooldown -= dt;
     } else {
         this.respawnCooldown = 0;
@@ -63,6 +68,20 @@ Level.prototype.colidiuCom = function (alvo, resolveColisao) {
     }
 };
 
+Level.prototype.removeEnemy = function (enemy){
+    x = this.enemies.indexOf(enemy);
+    this.colisionObservable.remove(enemy);
+    this.enemies.splice(x, 1);
+};
+
+Level.prototype.resolveColision = function (inimigo,alvo){
+    var key = "boom";
+    x = this.enemies.indexOf(inimigo);
+    this.enemies.splice(x, 1);
+    this.colisionObservable.remove(inimigo);
+    if (al && key) al.play(key);
+}
+
 Level.prototype.perseguir = function (alvo, dt) {
     for (var i = 0; i < this.enemies.length; i++) {
         this.enemies[i].perseguir(alvo, dt);
@@ -73,18 +92,3 @@ Level.prototype.perseguirAng = function (alvo, dt) {
         this.enemies[i].perseguirAng(alvo, dt);
     }
 };
-
-Level.prototype.colidiuComTiros = function (al, key) {
-    var that = this;
-    for (var i = this.player.shots.length - 1; i >= 0; i--) {
-        this.colidiuCom(this.player.shots[i], function (alvo) {
-                alvo.color = "green";
-                that.shots.splice(i, 1);
-                player.acertouTiro();
-                x = that.enemies.indexOf(alvo);
-                that.enemies.splice(x, 1);
-                if (al && key) al.play(key);
-            }
-        );
-    }
-}
