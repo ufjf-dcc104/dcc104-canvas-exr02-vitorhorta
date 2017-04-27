@@ -16,9 +16,12 @@
 <h1>DCC104 - Exemplo 02</h1>
 <canvas></canvas>
 <script>
+
+
     var eCanvas = initCanvas();
     var colisionObservable = new ColisionObservable();
     var ctx = eCanvas.getContext("2d");
+    ctx.font="20px Arial";
     var il =initImageLoader();
     var al = initAudioLoader();
     var atual = new Date();
@@ -34,6 +37,7 @@
     level.init();
     level.player = player;
     desenha();
+    var gameRunning = true;
 
     function initImageLoader(){
         var il = new ImageLoader();
@@ -56,17 +60,18 @@
         return eCanvas
     }
     function desenha(){
+        if(gameRunning == false) return;
         requestAnimationFrame(desenha);
         atual = new Date();
         dt = (atual - anterior)/1000;
         ctx.clearRect(0,0,eCanvas.width, eCanvas.height);
         ctx.strokeRect(0,0,eCanvas.width, eCanvas.height);
         ctx.fillStyle = "darkgreen";
-        ctx.fillText("Energia", 10, 10);
+        ctx.fillText("Energia", 10, 30);
         ctx.fillStyle = 'green';
-        ctx.fillRect(10,20,player.hp,20);
-        ctx.fillText("Vida: " + player.vidas, 400, 10);
-        ctx.fillText("Pontos: " + player.pontos, 400, 30);
+        ctx.fillRect(10,50,player.hp,20);
+        ctx.fillText("Vida: " + player.vidas, 400, 40);
+        ctx.fillText("Pontos: " + player.pontos, 400, 80);
         level.respawn(dt);
         level.perseguir(player.sprite,dt);
         player.mover(dt);
@@ -80,7 +85,10 @@
         anterior = atual;
     }
 
-
+    document.addEventListener("playerDies", function(e) {
+        gameRunning = false;
+        ctx.fillText("GAME OVER",200,200);
+    });
 
 </script>
 </body>

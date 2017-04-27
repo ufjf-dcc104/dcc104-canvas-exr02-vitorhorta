@@ -5,7 +5,7 @@ function Level() {
     this.inimigosRespawn = 1;
     this.player = null;
     this.respawnCooldown = 0;
-    this.maxCooldown = 2;
+    this.maxCooldown = 1;
 }
 
 Level.prototype.init = function () {

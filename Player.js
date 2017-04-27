@@ -1,3 +1,5 @@
+var event = new CustomEvent("playerDies", { "detail": "Example of an event" });
+
 function Player(){
     this.hp = 100;
     this.sprite = new Sprite();
@@ -12,6 +14,7 @@ function Player(){
     this.shots = [];
     this.cooldown = 0;
     this.colisionObservable = null;
+    this.alive = true;
 }
 
 
@@ -79,12 +82,18 @@ Player.prototype.fire = function (audiolib, key, vol){
     if(audiolib && key) audiolib.play(key,vol);
 }
 
+Player.prototype.die = function() {
+    this.alive = false;
+    document.dispatchEvent(event);
+};
+
 Player.prototype.receberPontos = function (pontos) {
     this.pontos += pontos;
 }
 
 Player.prototype.receberDano = function (dano) {
     this.hp -= dano;
+    if(this.hp <= 0) this.die();
 }
 
 
