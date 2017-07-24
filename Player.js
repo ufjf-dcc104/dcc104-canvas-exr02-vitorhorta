@@ -5,7 +5,7 @@ function Player(){
     this.sprite = new Sprite();
     this.vidas = 3;
     this.pontos = 0;
-    this.x = 40;
+    this.x = 260;
     this.y = 350;
     this.sprite.x = this.x;
     this.sprite.y = this.y;
