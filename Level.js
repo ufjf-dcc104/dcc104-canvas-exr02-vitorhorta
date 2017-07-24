@@ -16,7 +16,7 @@ Level.prototype.respawn = function (dt) {
     if (this.respawnCooldown > 0) return;
     for (var i = 0; i < this.inimigosRespawn; i++) {
         var inimigo = new Enemy();
-        var xPosition = Math.floor((Math.random() * 10) + 1);
+        var xPosition = Math.floor((Math.random() * 30) + 1);
         inimigo.sprite.x = 20 * xPosition;
         inimigo.sprite.y = 10;
         inimigo.sprite.width = 32;

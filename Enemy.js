@@ -1,4 +1,4 @@
-function Enemy(){
+function Enemy(lvl){
     this.hp = 1;
     this.dano = 20;
     this.pontos = 0;
@@ -9,6 +9,7 @@ function Enemy(){
     this.sprite.y = this.y;
     this.sprite.ay = 0.0;
     this.sprite.vy = 60.0;
+    if(lvl && lvl == 2) this.sprite.vy = 90.0;
     this.shots = [];
     this.colisionResolver = null;
 }

@@ -36,6 +36,7 @@
     level.colisionObservable = colisionObservable;
     level.init();
     level.player = player;
+    var numLevel = 1;
     desenha();
     var gameRunning = true;
 
@@ -44,6 +45,7 @@
         il.load("pc", "images/player_ship.png");
         il.load("enemy", "images/enemy_1.png");
         il.load("shot", "images/shot.png");
+        il.load("bg", "images/tilesetOpenGameBackground.png");
         return il;
     }
 
@@ -65,20 +67,25 @@
         atual = new Date();
         dt = (atual - anterior)/1000;
         ctx.clearRect(0,0,eCanvas.width, eCanvas.height);
+        ctx.drawImage(il.images["bg"], 1, -300,900,1100);
+
         ctx.strokeRect(0,0,eCanvas.width, eCanvas.height);
         ctx.fillStyle = "darkgreen";
         ctx.fillText("Energia", 10, 30);
         ctx.fillStyle = 'green';
         ctx.fillRect(10,50,player.hp,20);
-        ctx.fillText("Vida: " + player.vidas, 400, 40);
+        ctx.fillText("Level: " + numLevel, 400, 40);
+
         ctx.fillText("Pontos: " + player.pontos, 400, 80);
         level.respawn(dt);
         level.perseguir(player.sprite,dt);
         player.mover(dt);
         level.moverAng(dt);
-
+        if(player.pontos == 1000) {
+            numLevel = 2;
+            il.load("enemy", "images/lvl2.png");
+        }
         colisionObservable.checkColisions();
-
         player.desenharImg(ctx, il.images["pc"]);
         level.desenharImg(ctx);
 
